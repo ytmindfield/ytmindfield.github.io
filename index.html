@@ -3,9 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/video.js@7.7.5/dist/video-js.min.css"
+    />
+    <title>Video Player</title>
+
+    <style>
+      .video-js {
+        width: 95vw;
+        margin: auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>Coming soon...</h1>
+    <video id="video" class="video-js" controls preload="auto"></video>
+
+    <script src="https://cdn.jsdelivr.net/npm/video.js@7.7.5/dist/video.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/videojs-playlist@4.3.1/dist/videojs-playlist.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@2.5.2/base64.min.js"></script>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search)
+
+      const data = urlParams.get("data")
+
+      const player = videojs("video", { autoplay: "play" })
+
+      player.playlist(JSON.parse(Base64.decode(data)))
+
+      player.playlist.autoadvance(0)
+    </script>
   </body>
 </html>
